@@ -1,11 +1,11 @@
-# AGENTS.md — mailroom-live
+# AGENTS.md — mailroom
 
 Read this whole file before doing anything in this repository. It applies to every AI coding
 agent (Claude Code, Codex, Cursor, Copilot, etc.).
 
 ## 1. What this project is
 
-- **Name:** `mailroom-live`
+- **Name:** `mailroom` (the app's command is still `mailroom-live`)
 - **Owner / learner:** Rashid Mahmood Sajid (comfortable in English and Urdu).
 - **Purpose:** a *learning* project. We are learning programming fundamentals by building it,
   following **Chapter 13 — Programming Fundamentals in the AI Era** of *The AI Agent Factory*
@@ -125,7 +125,7 @@ uv add <package>           # ONLY with the learner's permission
 ## 7. Project layout
 
 ```
-mailroom-live/
+mailroom/
 ├── AGENTS.md              # this file
 ├── README.md
 ├── pyproject.toml         # project metadata, dev deps, pyright config
@@ -138,5 +138,5 @@ mailroom-live/
 
 ## 8. Repository
 
-- GitHub: `mailroom-live`, default branch `main`.
+- GitHub: `rashid200gb/mailroom`, default branch `main`.
 - Do not commit `.venv/`, `__pycache__/`, secrets, or `.env` files.

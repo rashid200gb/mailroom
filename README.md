@@ -1,4 +1,4 @@
-# mailroom-live
+# mailroom
 
 A learning project built while working through **Chapter 13: Programming Fundamentals in the AI Era** of *The AI Agent Factory* (Panaversity), using the PRIMM-AI+ method.
 
