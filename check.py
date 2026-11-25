@@ -1,42 +1,20 @@
-# check.py — reading the subscribers file (tests first)
+# check.py: tests for mailroom.py (plain assert, no pytest needed)
 #
-# Step 1 (done): wrote the tests first and watched all three FAIL (NameError).
-# Step 2 (now): the three functions below. Run:  uv run pytest check.py
+# Run:  uv run python check.py
+# If every assert holds, the last line prints. If one fails, Python stops
+# with AssertionError and shows that assert's message.
 
-SUBSCRIBERS_FILE: str = "data/subscribers.csv"
-HEADER_LINES: int = 1   # the first line holds column names, not a subscriber
-GROUP_COLUMN: int = 3   # first_name=0, last_name=1, email=2, group=3
+from mailroom import SUBSCRIBERS_FILE, count_emails, count_group, read_subscribers
 
+subscribers: str = read_subscribers(SUBSCRIBERS_FILE)
 
-def read_subscribers(path: str) -> str:
-    with open(path, encoding="utf-8") as file:
-        return file.read()
+# Behaviour 1: when the file is read, its output type is string
+assert isinstance(subscribers, str), "reading the file should give back text (str)"
 
+# Behaviour 2: total number of emails will be 24
+assert count_emails(subscribers) == 24, "there should be 24 emails"
 
-def count_emails(text: str) -> int:
-    lines: list[str] = text.splitlines()
-    return len(lines) - HEADER_LINES
+# Behaviour 3: the daily-drinkers group has 8 rows
+assert count_group(subscribers, "daily-drinkers") == 8, "daily-drinkers should have 8 rows"
 
-
-def count_group(text: str, group: str) -> int:
-    count: int = 0
-    for line in text.splitlines():
-        fields: list[str] = line.split(",")
-        if fields[GROUP_COLUMN] == group:
-            count += 1
-    return count
-
-
-def test_read_gives_text() -> None:
-    text: str = read_subscribers(SUBSCRIBERS_FILE)
-    assert isinstance(text, str)
-
-
-def test_total_emails_is_24() -> None:
-    text: str = read_subscribers(SUBSCRIBERS_FILE)
-    assert count_emails(text) == 24
-
-
-def test_daily_drinkers_has_8_rows() -> None:
-    text: str = read_subscribers(SUBSCRIBERS_FILE)
-    assert count_group(text, "daily-drinkers") == 8
+print("All 3 checks passed.")
